@@ -30,7 +30,7 @@ public class GalliCricketScoringServiceImpl implements GalliCricketScoringServic
 		
 		int totalScrore = 0;
 		for(String score : individualScore) {
-			if(!"w".equalsIgnoreCase(score)) {				
+			if(GalliCricketConstant.ZERO_VALUE.equalsIgnoreCase(score) || GalliCricketConstant.ONE_VALUE.equalsIgnoreCase(score)) {				
 				totalScrore += Integer.parseInt(score);
 			}
 		}
