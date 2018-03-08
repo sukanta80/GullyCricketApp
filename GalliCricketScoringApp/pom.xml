@@ -4,7 +4,7 @@
 
   <groupId>com.synth.score</groupId>
   <artifactId>GalliCricketScoringApp</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.1</version>
   <packaging>jar</packaging>
 
   <name>GalliCricketScoringApp</name>
@@ -28,27 +28,43 @@
     </dependency>
   </dependencies>
   
+  
   <build>
-     <plugins>
-         <plugin>
-             <groupId>org.apache.maven.plugins</groupId>
-             <artifactId>maven-shade-plugin</artifactId>
-             <version>2.1</version>
-             <executions>
-                 <execution>
-                     <phase>package</phase>
-                     <goals>
-                         <goal>shade</goal>
-                     </goals>
-                     <configuration>
-                         <transformers>
-                            <transformer implementation = "maven-shade-plugin">
-                            </transformer>
-                         </transformers>
-                     </configuration>
-                 </execution>
-             </executions>
-         </plugin>
-     </plugins>
+	<plugins>
+	  <plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-jar-plugin</artifactId>
+		<version>2.4</version>
+		<configuration>
+		  <archive>
+		    <manifest>
+			<addClasspath>true</addClasspath>
+			<mainClass>com.synth.score.GalliCricketScoringMain</mainClass>	
+			<classpathPrefix>lib/</classpathPrefix>		
+			<classpathPrefix>dependency-jars/</classpathPrefix>
+		    </manifest>
+		  </archive>
+		</configuration>
+	  </plugin>
+	  <plugin>
+    <groupId>org.codehaus.mojo</groupId>
+    <artifactId>appassembler-maven-plugin</artifactId>
+    <version>1.1.1</version>
+    <configuration>
+        <copyConfigurationDirectory>true</copyConfigurationDirectory>
+        <configurationDirectory>etc</configurationDirectory>
+        <repositoryName>lib</repositoryName>
+        <repositoryLayout>flat</repositoryLayout>
+        <programs>
+            <program>
+                <mainClass>com.synth.score.GalliCricketScoringMain</mainClass>
+                <name>GalliCricketScoringMain</name>
+            </program>
+        </programs>
+    </configuration>
+</plugin>
+	</plugins>
   </build>
+     
+	
 </project>
